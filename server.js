@@ -12,7 +12,7 @@ const routes = require('./routes');
 // set up the middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(routes);
+//app.use(routes);
 
 app.once('open', () => {
     app.listen(() => {
