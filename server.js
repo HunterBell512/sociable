@@ -12,10 +12,10 @@ const routes = require('./routes');
 // set up the middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-//app.use(routes);
+app.use(routes);
 
-app.once('open', () => {
-    app.listen(() => {
+db.once('open', () => {
+    app.listen(PORT, () => {
         console.log(`App is listening on port ${PORT}`)
     });
 });

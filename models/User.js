@@ -1,5 +1,4 @@
 const { Schema, model } = require("mongoose");
-const { use } = require("../routes");
 
 const validateEmail = (email) => {
   let regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
@@ -34,15 +33,19 @@ const userSchema = new Schema(
     ],
   },
   {
-    toJson: {
+    toJSON: {
       virtuals: true,
     },
     id: false,
   }
 );
 
-userSchema.virtual("friendCount").get(() => this.friends.length);
-userSchema.virtual("thoughtCount").get(() => this.thoughts.length);
+userSchema.virtual("friendCount").get(function () {
+  return this.friends.length;
+});
+userSchema.virtual("thoughtCount").get(function () {
+  return this.thoughts.length;
+});
 
 const User = model("user", userSchema);
 
