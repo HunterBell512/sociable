@@ -24,7 +24,7 @@ module.exports = {
   },
   async createThought(req, res) {
     try {
-      const user = await User.findOne({ username: req.body.username }).select('-__v').populate('reactions');
+      const user = await User.findOne({ username: req.body.username }).select('-__v');
 
       if (!user) {
         return res.status(404).json("No user was found with this ID");
